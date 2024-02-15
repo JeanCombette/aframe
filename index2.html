@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AR.js Example with jsartoolkit5</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/artoolkit/jsartoolkit5@5.5.1/dist/artoolkit.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent('jsartoolkit', {
+        init: function () {
+          this.el.sceneEl.renderer.xr.addEventListener('sessionend', () => {
+            ARController.getUserMediaThreeScene().close();
+          });
+        },
+        tick: function () {
+          const arController = ARController.getUserMediaThreeScene().arController;
+          if (arController && arController.visible) {
+            const object3D = this.el.object3D;
+            const markerMatrix = arController.matrixWorld;
+
+            // Appliquer la matrice du marker à l'objet 3D
+            object3D.matrix.copy(markerMatrix);
+            object3D.matrix.decompose(object3D.position, object3D.rotation, object3D.scale);
+          }
+        }
+      });
+    </script>
+  </head>
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene jsartoolkit embedded arjs>
+      <!-- Utilisez le type 'hiro' pour les marqueurs Hiro -->
+      <a-marker type="hiro">
+        <a-entity gltf-model="url(./public/boisv4_light.glb)" scale="0.5 0.5 0.5" jsartoolkit></a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+
+
+
+    <title>JC</title>
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+    <a-scene embedded arjs>
+          
+        <a-assets>
+            <a-asset-item id="cube" src="./public/boisv4_light.glb"></a-asset-item>
+        </a-assets>
+
+
+
+        <!-- <a-camera  preset='hiro' position="0 3 30" active="true" id="main-camera" look-controls-enabled="false"  loading-screen="enabled:false"></a-camera> -->
+
+
+        <a-light color="white" position="0 3 15"></a-light>
+        
+        <a-entity id="animated-entity" position="0 0 0" scale="5 5 5" gltf-model="#cube" light="type: ambient; color: #BBB" animation-mixer>
+            <a-entity id="bell" clickable></a-entity>
+        </a-entity>
+
+        <a-marker-camera preset='hiro' ></a-marker-camera>
+
+        <!-- <div style="display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr; width: 100%; height: 100vh; place-items: center;">
+            
+            <div onclick="pause()" style="z-index: 9; grid-column: 1; width: 100%; height: 100%;">
+                Pause
+            </div>
+            <div onclick="play()" style="z-index: 10; grid-column: 2; width: 100%; height: 100%;">
+                Play
+            </div>
+        </div> -->
+    </a-scene>
+
+    <script>
+
+        //     var secondCameraEl = document.querySelector('#second-camera');
+        //     secondCameraEl.setAttribute('camera', 'active', true);
+
+
+
+        // function pause() {
+        //     document.querySelector("#animated-entity").setAttribute('animation-mixer', {
+        //         timeScale: 0
+        //     });
+        // }
+
+        // function play() {
+        //     document.querySelector("#animated-entity").setAttribute('animation-mixer', {
+        //         timeScale: 1
+        //     });
+        // }
+
+        // var t = [];
+        // function animate(now) {
+        //     t.unshift(now);
+        //     if (t.length > 10) {
+        //         var t0 = t.pop();
+        //         var fps = Math.floor(1000 * 10 / (now - t0));
+
+        //         // Si le FPS est proche de 120, change la position de la caméra
+        //         if (fps >= 110 && fps <= 130) {
+        //             document.querySelector("#main-camera").setAttribute('position', '0 10 30');
+        //         } else {
+        //             document.querySelector("#main-camera").setAttribute('position', '0 3 30');
+        //         }
+
+        //         console.log(fps + ' fps');
+        //     }
+
+        //     window.requestAnimationFrame(animate);
+        // };
+
+        // window.requestAnimationFrame(animate);
+    </script>
+
+</body>
+</html>

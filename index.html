@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<!-- we import arjs version without NFT but with marker + location based support -->
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap" rel="stylesheet">
+
+
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs>
+        <a-marker preset="hiro">
+
+
+
+            <a-asset-item id="bois" src="./public/boisv4_light.glb"></a-asset-item>
+
+            <a-entity position="10 -30 -18" rotation="-45 0 0" scale="5 5 5" gltf-model="#bois"
+                animation-mixer="timeScale: .875">
+            </a-entity>
+
+            <h1 style="font-size: 5rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: Protest Revolution, sans-serif; color: white;"
+            look-at="[camera]">Regarde en l'air !</h1>
+
+            <audio id="monSon" controls>
+                <source src="./public/son2.mp3" type="audio/mp3">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+
+        </a-marker>
+
+        <!-- <a-entity
+          position="0 0 0"
+          scale="0.1 0.1 0.1"
+          rotation="-90 0 0"
+          gltf-model="./public/boisv3.glb"
+          animation-mixer
+        ></a-entity> -->
+    </a-scene>
+
+    <script>
+        // Utilise setTimeout pour attendre 5 secondes (5000 millisecondes)
+        setTimeout(function() {
+            // Obtenez l'élément audio par son ID
+            var monSon = document.getElementById("monSon");
+            
+            // Démarrez la lecture du son
+            monSon.play();
+        }, 2000);
+    </script>
+</body>
+
+</html>
+
